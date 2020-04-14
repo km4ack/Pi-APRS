@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#GUI interface for ISS digipeater 
+#interface. Based on work by 
+#Scott Chapman K4KDR
+#20200413 KM4ACK
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+source $DIR/config
+
+MYPATH=$DIR
+
+##############DEV NOTES##################
+
+#set call to N0CALL in config file
+#create setup file
+
+##############DEV NOTES##################
+
+mkdir -p $MSGPATH
+
+#Verify not running as root
+WHO=$(whoami)
+if [ $WHO = 'root' ]; then
+echo "no need to run with sudo"
+exit
+fi
+
+#verify callsign has been set
+if [ $MYCALL = "N0CALL" ]; then
+yad --width=350 --height=75 --title="N0CALL" --timeout=5 --timeout-indicator=top --no-buttons --center --text="Please set your call sign in config and try again"
+exit
+fi
+
+#Verify needed dependencies are installed
+
+	#check if YAD is installed
+	if ! hash yad 2>/dev/null; then
+	echo "YAD isn't installed. Please install and try again"
+	exit
+	fi
+
+	#check if direwolf is installed
+	if ! hash direwolf 2>/dev/null; then
+	echo "Direwolf isn't installed. Please install and try again"
+	exit	
+	fi
+
+	#check if ax25 is installed
+	AX=$(ls /etc/ax25)
+	if [ -z "$AX" ]; then
+	echo "AX25 isn't installed. Please install and try again"
+	exit
+	fi
+
+
+yad --form --width=250 --text="Let's Talk APRS!" --center --title="Pi-ISS" \
+--field="Free Message":fbtn "bash -c 'source $HOME/dev/ISS/functions; FREEMSG'" \
+--field="Status":fbtn "bash -c 'source $HOME/dev/ISS/functions; SENDSTAT'" \
+--field="Heard You":fbtn "bash -c 'source $HOME/dev/ISS/functions; HEARDU'" \
+--field="QSL73":fbtn "bash -c 'source $HOME/dev/ISS/functions; QSL73'" \
+--field="Send Position":fbtn "bash -c 'source $HOME/dev/ISS/functions; SENDPOS'" \
+--field="Start Modems":fbtn "bash -c 'source $HOME/dev/ISS/functions; STARTMODEM'" \
+--button=gtk-quit:1
+
+QUIT=$?
+
+if [ $QUIT = 1 ] || [ $QUIT = 252 ]; then
+echo "I quit!!"
+sudo killall kissutil > /dev/null 2>&1
+sudo killall direwolf > /dev/null 2>&1
+fi
+
+
+
+
+
+
+
