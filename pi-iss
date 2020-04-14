@@ -56,12 +56,12 @@ fi
 
 
 yad --form --width=250 --text="Let's Talk APRS!" --center --title="Pi-ISS" \
---field="Free Message":fbtn "bash -c 'source $HOME/dev/ISS/functions; FREEMSG'" \
---field="Status":fbtn "bash -c 'source $HOME/dev/ISS/functions; SENDSTAT'" \
---field="Heard You":fbtn "bash -c 'source $HOME/dev/ISS/functions; HEARDU'" \
---field="QSL73":fbtn "bash -c 'source $HOME/dev/ISS/functions; QSL73'" \
---field="Send Position":fbtn "bash -c 'source $HOME/dev/ISS/functions; SENDPOS'" \
---field="Start Modems":fbtn "bash -c 'source $HOME/dev/ISS/functions; STARTMODEM'" \
+--field="Free Message":fbtn "bash -c 'source $MYPATH/functions; FREEMSG'" \
+--field="Status":fbtn "bash -c 'source $MYPATH/functions; SENDSTAT'" \
+--field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
+--field="QSL73":fbtn "bash -c 'source $MYPATH/functions; QSL73'" \
+--field="Send Position":fbtn "bash -c 'source $MYPATH/functions; SENDPOS'" \
+--field="Start Modems":fbtn "bash -c 'source $MYPATH/functions; STARTMODEM'" \
 --button=gtk-quit:1
 
 QUIT=$?
