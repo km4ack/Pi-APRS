@@ -7,38 +7,71 @@ source $DIR/config
 
 MYPATH=$DIR
 
+DIRE=$(pidof direwolf)
+KSUT=$(pidof kissutil)
+
+#Generic Send Function
+SEND(){
+yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending $WHAT" &
+}
+
 #Sending Position Function
 SENDPOS(){
+if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
+yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+exit
+fi
 yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Postion" &
 $MYPATH/position.sh
 }
 
 #Sending Status Function
 SENDSTAT(){
+if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
+yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+exit
+fi
 yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Status" &
 $MYPATH/status.sh
-echo "Should be sent"
 }
 	
 #funtion to send free messages
 FREEMSG() {
-MSG=$(yad --center --width=400 --height=400 --title="Free Message" --form --field="TO" --field="Message")
+if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
+yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+exit
+fi
+MSG=$(yad --center --width=400 --height=100 --title="Free Message" --form --field="TO" --field="Message")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
 MSG=$(echo $MSG | awk -F "|" '{print $2}')
+WHAT=message
+SEND
 $MYPATH/freemsg.sh $TO "$MSG"
 }
 
 #function to send QSL message
 QSL73(){
-MSG=$(yad --center --width=400 --height=400 --title="Send QSL" --form --field="Call sign to QSL")
+if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
+yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+exit
+fi
+MSG=$(yad --center --width=200 --height=100 --title="Send QSL" --form --field="Call sign to QSL")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
+WHAT=QSL
+SEND
 $MYPATH/qsl73.sh $TO
 }
 
 #function to send heard you message
 HEARDU(){
-MSG=$(yad --center --width=200 --height=200 --form --title="Heard You!!" --field="Who did you hear")
+if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
+yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+exit
+fi
+MSG=$(yad --center --width=200 --height=100 --form --title="Heard You!!" --field="Who did you hear")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
+WHAT="Heard you"
+SEND
 $MYPATH/heardyou.sh $TO
 }
 
@@ -52,7 +85,7 @@ $DIREWOLF &
 sleep 1
 #get correct link for direwolf
 #LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
-/usr/local/bin/kissutil -f $MSGPATH/ -h 127.0.0.1 &
+$KISS &
 sleep 1
 DIRE=$(pidof direwolf)
 KISS=$(pidof kissutil)
