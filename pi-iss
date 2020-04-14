@@ -1,19 +1,19 @@
 #!/bin/bash
 
-#GUI interface for ISS digipeater 
-#interface. Based on work by 
-#Scott Chapman K4KDR
+#GUI interface for working ISS via APRS 
+#Based on work by Scott Chapman K4KDR
 #20200413 KM4ACK
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source $DIR/config
+MYPATH=$HOME/Pi-ISS
 
-MYPATH=$DIR
+source $MYPATH/config
+
+
+
 
 ##############DEV NOTES##################
 
-#set call to N0CALL in config file
 #create setup file
 
 ##############DEV NOTES##################
