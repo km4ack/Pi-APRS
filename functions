@@ -1,0 +1,75 @@
+#Funtions called by main script
+#20200413 km4ack
+
+MYPATH=$HOME/dev/ISS
+
+source $MYPATH/config
+
+#Sending Position Function
+SENDPOS(){
+yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Postion" &
+$MYPATH/position.sh
+}
+
+#Sending Status Function
+SENDSTAT(){
+yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Status" &
+$MYPATH/status.sh
+echo "Should be sent"
+}
+	
+#funtion to send free messages
+FREEMSG() {
+MSG=$(yad --center --width=400 --height=400 --title="Free Message" --form --field="TO" --field="Message")
+TO=$(echo $MSG | awk -F "|" '{print $1}')
+MSG=$(echo $MSG | awk -F "|" '{print $2}')
+$MYPATH/freemsg.sh $TO "$MSG"
+}
+
+#function to send QSL message
+QSL73(){
+MSG=$(yad --center --width=400 --height=400 --title="Send QSL" --form --field="Call sign to QSL")
+TO=$(echo $MSG | awk -F "|" '{print $1}')
+$MYPATH/qsl73.sh $TO
+}
+
+#function to send heard you message
+HEARDU(){
+MSG=$(yad --center --width=200 --height=200 --form --title="Heard You!!" --field="Who did you hear")
+TO=$(echo $MSG | awk -F "|" '{print $1}')
+$MYPATH/heardyou.sh $TO
+}
+
+#Start direwolf & kissattach function
+STARTMODEM () {
+
+#give user instant feedback on button push
+yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Starting Modems" &
+#start direwolf
+$DIREWOLF &
+sleep 1
+#get correct link for direwolf
+#LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
+/usr/local/bin/kissutil -f $MSGPATH/ -h 127.0.0.1 &
+sleep 1
+DIRE=$(pidof direwolf)
+KISS=$(pidof kissutil)
+
+if [ -z "$KISS" ] || [ -z $DIRE ]; then
+yad --text="Modems FAILED to start. Please check config file and try again" --text-align=center --center --button=gtk-ok:1
+else
+yad --text="Modems have started" --text-align=center --center --button=gtk-ok:1
+fi
+
+}
+
+
+
+
+
+
+
+
+
+
+
