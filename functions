@@ -1,9 +1,11 @@
 #Funtions called by main script
 #20200413 km4ack
 
-MYPATH=$HOME/dev/ISS
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source $MYPATH/config
+source $DIR/config
+
+MYPATH=$DIR
 
 #Sending Position Function
 SENDPOS(){
