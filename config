@@ -10,7 +10,6 @@ SSID=2
 #Your City
 CITY=Montpelier
 
-
 #Your State
 STATE=VA
 
@@ -33,7 +32,10 @@ LATLON=3746.29N/07737.13W
 SYMBOL=Q
 
 #Command to start direwolf
-DIREWOLF="direwolf -p -t 0"
+DIREWOLF="/usr/local/bin/direwolf -p -t 0"
 
 #Temp message storage path. DO NOT add trailing slash!!
 MSGPATH=/run/user/1000/ISS
+
+#Command to start kissutil
+KISS="/usr/local/bin/kissutil -f $MSGPATH/ -h 127.0.0.1"
