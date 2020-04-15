@@ -2,16 +2,16 @@
 #20200414 KM4ACK
 
 
-MYCALL=N0CALL
-SSID=6
-CITY=Murfreesboro
-STATE=TN
-GRID=EM65
+MYCALL=KM4ACK
+SSID=2
+CITY=Montpelier
+STATE=VA
+GRID=FM17
 HEARDYOU="Heard you via ISS in"
 QSLMESSAGE="QSL & 73!"
 STATUSCOMMENT="Rasp-Pi APRS Station"
-LATLON=3554.63N/08621.27W
+LATLON=3746.29N/07737.13W
 SYMBOL="Q"
-DIREWOLF="/usr/local/bin/direwolf -p -t 0"
+DIREWOLF="/usr/local/bin/direwolf -p -t 0 -L /home/pi/Pi-ISS/log.txt"
 MSGPATH=/run/user/1000/ISS
 KISS="/usr/local/bin/kissutil -f /run/user/1000/ISS/ -h 127.0.0.1"
