@@ -29,8 +29,7 @@ fi
 
 #verify callsign has been set
 if [ $MYCALL = "N0CALL" ]; then
-yad --width=350 --height=75 --title="N0CALL" --timeout=5 --timeout-indicator=top --no-buttons --center --text="Please set your call sign in config and try again"
-exit
+yad --width=350 --height=75 --title="N0CALL" --timeout=5 --timeout-indicator=top --no-buttons --center --text="Please choose settings and enter your call sign before using the app"
 fi
 
 #Verify needed dependencies are installed
@@ -55,13 +54,14 @@ fi
 	fi
 
 
-yad --form --width=250 --text="Let's Talk APRS!" --center --title="Pi-ISS" \
+yad --form --width=250 --image $HOME/Pi-ISS/ISS.png --image-on-top --text="Pi-ISS by KM4ACK" --text-align=center --center --title="Pi-ISS" \
 --field="Free Message":fbtn "bash -c 'source $MYPATH/functions; FREEMSG'" \
 --field="Status":fbtn "bash -c 'source $MYPATH/functions; SENDSTAT'" \
 --field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
 --field="QSL73":fbtn "bash -c 'source $MYPATH/functions; QSL73'" \
 --field="Send Position":fbtn "bash -c 'source $MYPATH/functions; SENDPOS'" \
 --field="Start Modems":fbtn "bash -c 'source $MYPATH/functions; STARTMODEM'" \
+--field="Settings":fbtn "bash -c 'source $MYPATH/functions; MYCONFIG'" \
 --button=gtk-quit:1
 
 QUIT=$?
