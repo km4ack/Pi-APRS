@@ -32,7 +32,7 @@ LATLON=3746.29N/07737.13W
 SYMBOL=Q
 
 #Command to start direwolf
-DIREWOLF="/usr/local/bin/direwolf -p -t 0"
+DIREWOLF="/usr/local/bin/direwolf -p -t 0 -L /home/pi/Pi-ISS/log.txt"
 
 #Temp message storage path. DO NOT add trailing slash!!
 MSGPATH=/run/user/1000/ISS
