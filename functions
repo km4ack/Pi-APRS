@@ -95,10 +95,71 @@ yad --text="Modems FAILED to start. Please check config file and try again" --te
 else
 yad --text="Modems have started" --text-align=center --center --button=gtk-ok:1
 fi
-
 }
 
+#Update config file function
+MYCONFIG(){
+TEMPFILE=$HOME/Pi-ISS/temp-config
+CONFIG=$HOME/Pi-ISS/config
 
+touch $TEMPFILE
+
+SETTING=$(yad --center --width=500 --wrap --title="Pi-ISS Setting" --text="Please answer the following selections:" \
+--form --separator="," --item-separator="," \
+--field="Current Callsign" "$MYCALL" \
+--field="SSID" "$SSID" \
+--field="City" "$CITY" \
+--field="State" "$STATE" \
+--field="Grid" "$GRID" \
+--field="Heard You Message" "$HEARDYOU" \
+--field="QSL Message" "$QSLMESSAGE" \
+--field="Status Comment" "$STATUSCOMMENT" \
+--field="LAT/LON" "$LATLON" \
+--field="APRS Symbol" "$SYMBOL" \
+--field="Direwolf Start Command":RO "$DIREWOLF" \
+--field="Temp Message Path":RO "$MSGPATH" \
+--field="Kissutil Start Command":RO "$KISS"
+)
+
+if [ -z "$SETTING" ]; then
+exit
+fi
+
+MYCALL=$(echo $SETTING | awk -F "," '{print$1}')
+SSID=$(echo $SETTING | awk -F "," '{print$2}')
+CITY=$(echo $SETTING | awk -F "," '{print$3}')
+STATE=$(echo $SETTING | awk -F "," '{print$4}')
+GRID=$(echo $SETTING | awk -F "," '{print$5}')
+HEARDYOU=$(echo $SETTING | awk -F "," '{print$6}')
+QSLMESSASGE=$(echo $SETTING | awk -F "," '{print$7}')
+STATUSCOMMENT=$(echo $SETTING | awk -F "," '{print$8}')
+LATLON=$(echo $SETTING | awk -F "," '{print$9}')
+SYMBOL=$(echo $SETTING | awk -F "," '{print$10}')
+DIREWOLF=$(echo $SETTING | awk -F "," '{print$11}')
+MSGPATH=$(echo $SETTING | awk -F "," '{print$12}')
+KISS=$(echo $SETTING | awk -F "," '{print$13}')
+
+echo "#Config file for Pi-ISS" >> $TEMPFILE
+echo "#20200414 KM4ACK" >> $TEMPFILE
+echo "" >> $TEMPFILE
+echo "" >> $TEMPFILE
+echo "MYCALL=$MYCALL" >> $TEMPFILE
+echo "SSID=$SSID" >> $TEMPFILE
+echo "CITY=$CITY" >> $TEMPFILE
+echo "STATE=$STATE" >> $TEMPFILE
+echo "GRID="$GRID >> $TEMPFILE
+echo "HEARDYOU=\"$HEARDYOU\"" >> $TEMPFILE
+echo "QSLMESSAGE=\"$QSLMESSAGE\"" >> $TEMPFILE
+echo "STATUSCOMMENT=\"$STATUSCOMMENT\"" >> $TEMPFILE
+echo "LATLON=$LATLON" >> $TEMPFILE
+echo "SYMBOL=\"$SYMBOL\"" >> $TEMPFILE
+echo "DIREWOLF=\"$DIREWOLF\"" >> $TEMPFILE
+echo "MSGPATH=$MSGPATH" >> $TEMPFILE
+echo "KISS=\"$KISS\"" >> $TEMPFILE
+
+cp $TEMPFILE $CONFIG
+rm $TEMPFILE
+}
 
 
 
