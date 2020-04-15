@@ -31,6 +31,8 @@ LATLON=3746.29N/07737.13W
 #ARPS Symbol - See http://www.aprs.net/vm/DOS/SYMBOLS.HTM
 SYMBOL=Q
 
+APRSPATH="CQ,ARISS"
+
 #Command to start direwolf
 DIREWOLF="/usr/local/bin/direwolf -p -t 0 -L /home/pi/Pi-ISS/log.txt"
 
