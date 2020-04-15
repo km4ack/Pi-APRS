@@ -89,6 +89,12 @@ STARTMODEM () {
 
 #give user instant feedback on button push
 yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-ISS/ISS.png --no-buttons --center --text="Starting Modems" &
+LOGFILE=$HOME/Pi-ISS/log.txt
+TEMPLOG=$HOME/Pi-ISS/templog.txt
+TODAY=$(date)
+rm $LOGFILE $TEMPLOG
+touch $LOGFILE
+echo "Log file created $TODAY" > $LOGFILE
 #start direwolf
 $DIREWOLF &
 sleep 1
