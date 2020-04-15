@@ -1,0 +1,41 @@
+#Config file for Pi-ISS
+#20200414 KM4ACK
+
+#Your Callsing
+MYCALL=N0CALL
+
+#SSID for your station
+SSID=2
+
+#Your City
+CITY=Montpelier
+
+#Your State
+STATE=VA
+
+#Your 4 character grid
+GRID=FM17
+
+#Heard you message. City, State, and Grid appended to end.
+HEARDYOU="Heard you via ISS in"
+
+#QSL Message
+QSLMESSAGE="QSL & 73!"
+
+#Status comment displayed on APRS.fi
+STATUSCOMMENT="Rasp-Pi APRS Station"
+
+#Your LAT/LON BE SURE CORRECT FORMAT
+LATLON=3746.29N/07737.13W
+
+#ARPS Symbol - See http://www.aprs.net/vm/DOS/SYMBOLS.HTM
+SYMBOL=Q
+
+#Command to start direwolf
+DIREWOLF="/usr/local/bin/direwolf -p -t 0"
+
+#Temp message storage path. DO NOT add trailing slash!!
+MSGPATH=/run/user/1000/ISS
+
+#Command to start kissutil
+KISS="/usr/local/bin/kissutil -f $MSGPATH/ -h 127.0.0.1"
