@@ -131,6 +131,7 @@ SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-ISS/ISS.png --t
 --field="Status Comment" "$STATUSCOMMENT" \
 --field="LAT/LON" "$LATLON" \
 --field="APRS Symbol" "$SYMBOL" \
+--field="ARPS PATH" "$APRSPATH" \
 --field="Direwolf Start Command":RO "$DIREWOLF" \
 --field="Temp Message Path":RO "$MSGPATH" \
 --field="Kissutil Start Command":RO "$KISS"
@@ -150,9 +151,10 @@ QSLMESSASGE=$(echo $SETTING | awk -F "," '{print$7}')
 STATUSCOMMENT=$(echo $SETTING | awk -F "," '{print$8}')
 LATLON=$(echo $SETTING | awk -F "," '{print$9}')
 SYMBOL=$(echo $SETTING | awk -F "," '{print$10}')
-DIREWOLF=$(echo $SETTING | awk -F "," '{print$11}')
-MSGPATH=$(echo $SETTING | awk -F "," '{print$12}')
-KISS=$(echo $SETTING | awk -F "," '{print$13}')
+APRSPATH=$(echo $SETTING | awk -F "," '{print$11}')
+DIREWOLF=$(echo $SETTING | awk -F "," '{print$12}')
+MSGPATH=$(echo $SETTING | awk -F "," '{print$13}')
+KISS=$(echo $SETTING | awk -F "," '{print$14}')
 
 echo "#Config file for Pi-ISS" >> $TEMPFILE
 echo "#20200414 KM4ACK" >> $TEMPFILE
@@ -168,6 +170,7 @@ echo "QSLMESSAGE=\"$QSLMESSAGE\"" >> $TEMPFILE
 echo "STATUSCOMMENT=\"$STATUSCOMMENT\"" >> $TEMPFILE
 echo "LATLON=$LATLON" >> $TEMPFILE
 echo "SYMBOL=\"$SYMBOL\"" >> $TEMPFILE
+echo "APRSPATH=\"$APRSPATH\"" >> $TEMPFILE
 echo "DIREWOLF=\"$DIREWOLF\"" >> $TEMPFILE
 echo "MSGPATH=$MSGPATH" >> $TEMPFILE
 echo "KISS=\"$KISS\"" >> $TEMPFILE
