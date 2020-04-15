@@ -8,7 +8,7 @@ callsign=$1
 
 printf -v callsign %-9.9s "$callsign"
 
-printf "${MYCALL}-${SSID}>CQ,ARISS::${callsign}:${HEARDYOU} ${CITY}, ${STATE} ${GRID}" > $MSGPATH/heard.txt
-
+#printf "${MYCALL}-${SSID}>CQ,ARISS::${callsign}:${HEARDYOU} ${CITY}, ${STATE} ${GRID}" > $MSGPATH/heard.txt
+printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${HEARDYOU} ${CITY}, ${STATE} ${GRID}" > $MSGPATH/heard.txt
 
 
