@@ -120,7 +120,7 @@ CONFIG=$HOME/Pi-ISS/config
 touch $TEMPFILE
 
 SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-ISS/ISS.png --title="Pi-ISS Setting" --text="Please answer the following selections:" \
---form --separator="," --item-separator="," \
+--form --separator="|" --item-separator="," \
 --field="Current Callsign" "$MYCALL" \
 --field="SSID" "$SSID" \
 --field="City" "$CITY" \
@@ -141,20 +141,20 @@ if [ -z "$SETTING" ]; then
 exit
 fi
 
-MYCALL=$(echo $SETTING | awk -F "," '{print$1}')
-SSID=$(echo $SETTING | awk -F "," '{print$2}')
-CITY=$(echo $SETTING | awk -F "," '{print$3}')
-STATE=$(echo $SETTING | awk -F "," '{print$4}')
-GRID=$(echo $SETTING | awk -F "," '{print$5}')
-HEARDYOU=$(echo $SETTING | awk -F "," '{print$6}')
-QSLMESSASGE=$(echo $SETTING | awk -F "," '{print$7}')
-STATUSCOMMENT=$(echo $SETTING | awk -F "," '{print$8}')
-LATLON=$(echo $SETTING | awk -F "," '{print$9}')
-SYMBOL=$(echo $SETTING | awk -F "," '{print$10}')
-APRSPATH=$(echo $SETTING | awk -F "," '{print$11}')
-DIREWOLF=$(echo $SETTING | awk -F "," '{print$12}')
-MSGPATH=$(echo $SETTING | awk -F "," '{print$13}')
-KISS=$(echo $SETTING | awk -F "," '{print$14}')
+MYCALL=$(echo $SETTING | awk -F "|" '{print$1}')
+SSID=$(echo $SETTING | awk -F "|" '{print$2}')
+CITY=$(echo $SETTING | awk -F "|" '{print$3}')
+STATE=$(echo $SETTING | awk -F "|" '{print$4}')
+GRID=$(echo $SETTING | awk -F "|" '{print$5}')
+HEARDYOU=$(echo $SETTING | awk -F "|" '{print$6}')
+QSLMESSASGE=$(echo $SETTING | awk -F "|" '{print$7}')
+STATUSCOMMENT=$(echo $SETTING | awk -F "|" '{print$8}')
+LATLON=$(echo $SETTING | awk -F "|" '{print$9}')
+SYMBOL=$(echo $SETTING | awk -F "|" '{print$10}')
+APRSPATH=$(echo $SETTING | awk -F "|" '{print$11}')
+DIREWOLF=$(echo $SETTING | awk -F "|" '{print$12}')
+MSGPATH=$(echo $SETTING | awk -F "|" '{print$13}')
+KISS=$(echo $SETTING | awk -F "|" '{print$14}')
 
 echo "#Config file for Pi-ISS" >> $TEMPFILE
 echo "#20200414 KM4ACK" >> $TEMPFILE
