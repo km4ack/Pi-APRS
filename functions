@@ -176,6 +176,10 @@ cp $TEMPFILE $CONFIG
 rm $TEMPFILE
 }
 
+#function taken out of service because
+#i couldn't resolve the blinking function. It is better to 
+#start the app in a terminal window and use the terminal window
+#to watch for incoming packets. 20200415 km4ack 
 CHECKLOG(){
 #get screen resolution
 WIDTH=$(xdpyinfo | awk '/dimensions:/ { print $2 }' | sed 's/x.*$//')
