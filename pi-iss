@@ -60,7 +60,6 @@ yad --form --width=250 --image $HOME/Pi-ISS/ISS.png --window-icon=$HOME/Pi-ISS/I
 --field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
 --field="QSL73":fbtn "bash -c 'source $MYPATH/functions; QSL73'" \
 --field="Send Position":fbtn "bash -c 'source $MYPATH/functions; SENDPOS'" \
---field="View Log File":fbtn "bash -c 'source $MYPATH/functions; CHECKLOG'" \
 --field="Start Modems":fbtn "bash -c 'source $MYPATH/functions; STARTMODEM'" \
 --field="Settings":fbtn "bash -c 'source $MYPATH/functions; MYCONFIG'" \
 --button=gtk-quit:1
