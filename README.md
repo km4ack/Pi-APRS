@@ -30,7 +30,7 @@ Once the app opens, start the modems. You are now ready to send APRS packets. If
 on your desktop, from the terminal run 
 
 ```
-~/Pi-ISS/./pi-iss from the terminal.
+~/Pi-ISS/./pi-iss
 ```
 
 Enjoy!
