@@ -15,6 +15,18 @@ git clone https://github.com/km4ack/Pi-ISS.git
 ln -sf ~/Pi-ISS/pi-iss ~/Desktop/Pi-ISS
 ```
 
+# Before running the app
+Before you run the app the first time, be sure that direwolf is configured for your current setup.
+
 # Configure
-After installing you will need to configure the setting for your station.
-See the config file.  ~/Pi-ISS/config 
+After installing you will need to set your call sign and other details using the settings button before using the app.
+A few fields are not editable in the settings. If you need to edit these fields, open the config file in the ~/Pi-ISS/
+directory and make changes there.
+
+# Using the app
+After configured, you will need to open the app by double clicking the icon on the desktop. Choose execute when asked.
+Once the app opens, start the modems. You are now ready to send APRS packets. If you don't want or don't have the icon
+on your desktop, run ~/Pi-ISS/./pi-iss from the terminal.
+
+Enjoy!
+73, de KM4ACK
