@@ -1,0 +1,5 @@
+SAMPLE LOG
+chan,utime,isotime,source,heard,level,error,dti,name,symbol,latitude,longitude,speed,course,altitude,frequency,offset,tone,system,status,telemetry,comment
+0,1586960707,2020-04-15T14:25:07Z,KM4ACK-9,KM4ACK-9,2(1/1),0,`,KM4ACK-9,/j,35.912500,-86.354167,0.0,3.0,175.0,145.490,-600,100.0,Yaesu FTM-400DR,En Route,, winlink
+0,1586960708,2020-04-15T14:25:08Z,KM4ACK-9,KD4TXF,1(1/1),0,`,KM4ACK-9,/j,35.912500,-86.354167,0.0,3.0,175.0,145.490,-600,100.0,Yaesu FTM-400DR,En Route,, winlink
+0,1586960709,2020-04-15T14:25:09Z,KM4ACK-9,KM4ACK-2,4(2/1),0,`,KM4ACK-9,/j,35.912500,-86.354167,0.0,3.0,175.0,145.490,-600,100.0,Yaesu FTM-400DR,En Route,, winlink
