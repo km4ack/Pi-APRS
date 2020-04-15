@@ -161,6 +161,48 @@ cp $TEMPFILE $CONFIG
 rm $TEMPFILE
 }
 
+CHECKLOG(){
+#get screen resolution
+WIDTH=$(xdpyinfo | awk '/dimensions:/ { print $2 }' | sed 's/x.*$//')
+
+
+LOGFILE(){
+#set path to log file
+LOGFILE=$HOME/Pi-ISS/log.txt
+TEMPLOG=$HOME/Pi-ISS/templog.txt
+
+#write 5 lines to templog
+tail -5 $LOGFILE > $TEMPLOG
+
+LOG=$(yad --top --width=$WIDTH --height=200 --title="Last 5 Heard Packets" --text-info=<$TEMPLOG --timeout=2 \
+--text="Last 15 items in my log file" \
+--button="Exit:1" \
+--button="Delete Log:2"
+)
+
+RC=$?
+if [ $RC == '1' ]
+then
+rm $TEMPLOG
+exit 0
+elif [ $RC == '2' ]
+then
+rm $LOGFILE $TEMPLOG
+fi
+}
+
+counter=1
+until [ $counter -gt 1000 ]
+do
+LOGFILE
+((counter++))
+echo $counter
+done
+
+rm $TEMPLOG
+
+}
+
 
 
 
