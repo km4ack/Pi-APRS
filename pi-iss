@@ -54,7 +54,7 @@ fi
 	fi
 
 
-yad --form --width=250 --image $HOME/Pi-ISS/ISS.png --image-on-top --text="Pi-ISS by KM4ACK" --text-align=center --center --title="Pi-ISS" \
+yad --form --width=250 --image $HOME/Pi-ISS/ISS.png --window-icon=$HOME/Pi-ISS/ISS.png --image-on-top --text="Pi-ISS by KM4ACK" --text-align=center --center --title="Pi-ISS" \
 --field="Free Message":fbtn "bash -c 'source $MYPATH/functions; FREEMSG'" \
 --field="Status":fbtn "bash -c 'source $MYPATH/functions; SENDSTAT'" \
 --field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
