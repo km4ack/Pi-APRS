@@ -24,7 +24,8 @@ A few fields are not editable in the settings. If you need to edit these fields,
 directory and make changes there.
 
 # Using the app
-After configured, you will need to open the app by double clicking the icon on the desktop. Choose execute when asked.
+After configured, you will need to open the app by double clicking the icon on the desktop. Choose "Execute in Terminal" when asked.
+This will allow you to watch for incoming packets in the terminal window.
 Once the app opens, start the modems. You are now ready to send APRS packets. If you don't want or don't have the icon
 on your desktop, run ~/Pi-ISS/./pi-iss from the terminal.
 
