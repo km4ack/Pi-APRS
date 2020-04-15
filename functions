@@ -18,32 +18,35 @@ yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=to
 #Sending Position Function
 SENDPOS(){
 if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
-yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-ISS/ISS.png --button=gtk-ok:1
 exit
 fi
-yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Postion" &
+yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --window-icon=$HOME/Pi-ISS/ISS.png --text="Sending Postion" &
 $MYPATH/position.sh
 }
 
 #Sending Status Function
 SENDSTAT(){
 if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
-yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-ISS/ISS.png --button=gtk-ok:1
 exit
 fi
-yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Sending Status" &
+yad --width=300 --height=75 --title="Sending" --timeout=1 --timeout-indicator=top --no-buttons --center --window-icon=$HOME/Pi-ISS/ISS.png --text="Sending Status" &
 $MYPATH/status.sh
 }
 	
 #funtion to send free messages
 FREEMSG() {
 if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
-yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-ISS/ISS.png --button=gtk-ok:1
 exit
 fi
-MSG=$(yad --center --width=400 --height=100 --title="Free Message" --form --field="TO" --field="Message")
+MSG=$(yad --center --width=400 --height=100 --window-icon=$HOME/Pi-ISS/ISS.png --title="Free Message" --form --field="TO" --field="Message")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
 MSG=$(echo $MSG | awk -F "|" '{print $2}')
+if [ -z "$TO" ]; then
+exit
+fi
 WHAT=message
 SEND
 $MYPATH/freemsg.sh $TO "$MSG"
@@ -52,11 +55,14 @@ $MYPATH/freemsg.sh $TO "$MSG"
 #function to send QSL message
 QSL73(){
 if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
-yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-ISS/ISS.png --button=gtk-ok:1
 exit
 fi
-MSG=$(yad --center --width=200 --height=100 --title="Send QSL" --form --field="Call sign to QSL")
+MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-ISS/ISS.png --title="Send QSL" --form --field="Call sign to QSL")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
+if [ -z "$TO" ]; then
+exit
+fi
 WHAT=QSL
 SEND
 $MYPATH/qsl73.sh $TO
@@ -65,11 +71,14 @@ $MYPATH/qsl73.sh $TO
 #function to send heard you message
 HEARDU(){
 if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
-yad --text="Start modems and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Start modems and try again" --window-icon=$HOME/Pi-ISS/ISS.png --text-align=center --center --button=gtk-ok:1
 exit
 fi
-MSG=$(yad --center --width=200 --height=100 --form --title="Heard You!!" --field="Who did you hear")
+MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-ISS/ISS.png --form --title="Heard You!!" --field="Who did you hear")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
+if [ -z "$TO" ]; then
+exit
+fi
 WHAT="Heard you"
 SEND
 $MYPATH/heardyou.sh $TO
@@ -79,7 +88,7 @@ $MYPATH/heardyou.sh $TO
 STARTMODEM () {
 
 #give user instant feedback on button push
-yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --no-buttons --center --text="Starting Modems" &
+yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-ISS/ISS.png --no-buttons --center --text="Starting Modems" &
 #start direwolf
 $DIREWOLF &
 sleep 1
@@ -91,9 +100,9 @@ DIRE=$(pidof direwolf)
 KISS=$(pidof kissutil)
 
 if [ -z "$KISS" ] || [ -z $DIRE ]; then
-yad --text="Modems FAILED to start. Please check config file and try again" --text-align=center --center --button=gtk-ok:1
+yad --text="Modems FAILED to start. Please check config file and try again" --window-icon=$HOME/Pi-ISS/ISS.png --text-align=center --center --button=gtk-ok:1
 else
-yad --text="Modems have started" --text-align=center --center --button=gtk-ok:1
+yad --text="Modems have started" --window-icon=$HOME/Pi-ISS/ISS.png --text-align=center --center --button=gtk-ok:1
 fi
 }
 
@@ -104,7 +113,7 @@ CONFIG=$HOME/Pi-ISS/config
 
 touch $TEMPFILE
 
-SETTING=$(yad --center --width=500 --wrap --title="Pi-ISS Setting" --text="Please answer the following selections:" \
+SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-ISS/ISS.png --title="Pi-ISS Setting" --text="Please answer the following selections:" \
 --form --separator="," --item-separator="," \
 --field="Current Callsign" "$MYCALL" \
 --field="SSID" "$SSID" \
@@ -174,7 +183,7 @@ TEMPLOG=$HOME/Pi-ISS/templog.txt
 #write 5 lines to templog
 tail -5 $LOGFILE > $TEMPLOG
 
-LOG=$(yad --top --width=$WIDTH --height=200 --title="Last 5 Heard Packets" --text-info=<$TEMPLOG --timeout=2 \
+LOG=$(yad --top --width=$WIDTH --height=200 --window-icon=$HOME/Pi-ISS/ISS.png --title="Last 5 Heard Packets" --text-info=<$TEMPLOG --timeout=2 \
 --text="Last 15 items in my log file" \
 --button="Exit:1" \
 --button="Delete Log:2"
@@ -198,8 +207,6 @@ LOGFILE
 ((counter++))
 echo $counter
 done
-
-rm $TEMPLOG
 
 }
 
