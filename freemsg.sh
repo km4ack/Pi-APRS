@@ -10,8 +10,8 @@ printf -v callsign %-9.9s "$callsign"
 
 msg=$2
 
-printf "${MYCALL}-$SSID>CQ,ARISS::${callsign}:${msg}" > $MSGPATH/free.txt
-
+#printf "${MYCALL}-$SSID>CQ,ARISS::${callsign}:${msg}" > $MSGPATH/free.txt
+printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}" > $MSGPATH/free.txt
 
 
 
