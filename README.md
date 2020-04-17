@@ -1,5 +1,5 @@
-# Pi-ISS
-Packet program designed to communicate with ISS via APRS. Designed to run on the Raspberry Pi.
+# Pi-APRS
+Packet program designed to communicate via APRS. Designed to run on the Raspberry Pi. This can be used to communicate with satellites, ISS, or other APRS stations.
 
 A HUGE thank you to Scott Chapman, K4KDR, for his initial work on this project.
 His prior work was invaluable to this project.
@@ -11,8 +11,8 @@ direwolf, ax25-tools, & YAD
 # Install
 ```
 cd ~
-git clone https://github.com/km4ack/Pi-ISS.git
-ln -sf ~/Pi-ISS/pi-iss ~/Desktop/Pi-ISS
+git clone https://github.com/km4ack/Pi-APRS.git
+ln -sf ~/Pi-ISS/pi-iss ~/Desktop/Pi-APRS
 ```
 
 # Before running the app
@@ -30,7 +30,7 @@ Once the app opens, start the modems. You are now ready to send APRS packets. If
 on your desktop, from the terminal run 
 
 ```
-~/Pi-ISS/./pi-iss
+~/Pi-APRS/./pi-aprs
 ```
 
 Enjoy!
