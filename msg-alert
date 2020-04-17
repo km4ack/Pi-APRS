@@ -1,0 +1,42 @@
+source $HOME/Pi-APRS/config
+
+#message alert for pi-aprs
+#20200417 km4ack
+
+CALL="$MYCALL-$SSID"
+
+FILE=$HOME/Pi-APRS/log.txt
+FILE1=$HOME/Pi-APRS/log1.txt
+touch $FILE $FILE1
+counter=1
+while true
+do
+
+CHECK=$(diff $FILE $FILE1)
+sleep .5
+
+#look for differences in two files
+if [ -z "$CHECK" ]; then
+echo "Listening for incoming messages"
+echo "CTRL+C to EXIT"
+else
+#Look for changes in file
+MSG=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | sed 's/^.*://')
+#FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/>.*$//')
+FROM=$(cat $FILE | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/^.*}//' | sed 's/>.*$//')
+	#verify message is address to our station	
+	if [ -z "$FROM" ]; then
+	echo "found but not for me"
+	cp $FILE $FILE1
+	#notify with popup if message is found
+	else
+	yad --center --width=300 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
+	cp $FILE $FILE1
+	fi
+fi
+
+
+((counter++))
+echo $counter
+
+done
