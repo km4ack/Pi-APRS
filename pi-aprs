@@ -5,7 +5,7 @@
 #20200413 KM4ACK
 
 
-MYPATH=$HOME/Pi-ISS
+MYPATH=$HOME/Pi-APRS
 
 source $MYPATH/config
 
@@ -54,7 +54,7 @@ fi
 	fi
 
 
-yad --form --width=250 --image $HOME/Pi-ISS/ISS.png --window-icon=$HOME/Pi-ISS/ISS.png --image-on-top --text="<b>Pi-APRS</b> by KM4ACK" --text-align=center --center --title="Pi-APRS" \
+yad --form --width=250 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS/ISS.png --image-on-top --text="<b>Pi-APRS</b> by KM4ACK" --text-align=center --center --title="Pi-APRS" \
 --field="Free Message":fbtn "bash -c 'source $MYPATH/functions; FREEMSG'" \
 --field="Status":fbtn "bash -c 'source $MYPATH/functions; SENDSTAT'" \
 --field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
