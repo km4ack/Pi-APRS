@@ -23,7 +23,7 @@ else
 #Look for changes in file
 MSG=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | sed 's/^.*://')
 #FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/>.*$//')
-FROM=$(cat $FILE | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/^.*}//' | sed 's/>.*$//')
+FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/^.*}//' | sed 's/>.*$//')
 	#verify message is address to our station	
 	if [ -z "$FROM" ]; then
 	echo "found but not for me"
