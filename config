@@ -1,4 +1,4 @@
-#Config file for Pi-ISS
+#Config file for Pi-APRS
 #20200414 KM4ACK
 
 
@@ -13,6 +13,6 @@ STATUSCOMMENT="Rasp-Pi APRS Station"
 LATLON=3746.29N/07737.13W
 SYMBOL="Q"
 APRSPATH="CQ,ARISS"
-DIREWOLF="/usr/local/bin/direwolf -p -t 0 -L /home/pi/Pi-APRS/log.txt"
+DIREWOLF="/usr/local/bin/direwolf -p -t 0"
 MSGPATH=/run/user/1000/ISS
 KISS="/usr/local/bin/kissutil -f /run/user/1000/ISS/ -h 127.0.0.1"
