@@ -4,6 +4,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 source $DIR/config
 
+
+SEQ=$3
+
 callsign=$1
 
 callsign=${callsign^^}
@@ -14,7 +17,7 @@ msg=$2
 
 printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}" > $MSGPATH/free.txt
 
-#printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}"
+#printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}${SEQ}"
 
 
 
