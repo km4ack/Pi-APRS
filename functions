@@ -109,7 +109,7 @@ rm $LOGFILE $TEMPLOG
 touch $LOGFILE
 echo "Log file created $TODAY" > $LOGFILE
 #start direwolf
-$DIREWOLF &
+$DIREWOLF | tee $HOME/Pi-APRS/log.txt &
 sleep 1
 #get correct link for direwolf
 #LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
