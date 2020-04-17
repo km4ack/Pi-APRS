@@ -15,7 +15,7 @@ printf -v callsign %-9.9s "$callsign"
 
 msg=$2
 
-printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}" > $MSGPATH/free.txt
+printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}${SEQ}" > $MSGPATH/free.txt
 
 #printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${msg}${SEQ}"
 
