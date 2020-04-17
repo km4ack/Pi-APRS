@@ -114,8 +114,8 @@ fi
 
 #Update config file function
 MYCONFIG(){
-TEMPFILE=$HOME/Pi-ISS/temp-config
-CONFIG=$HOME/Pi-ISS/config
+TEMPFILE=$HOME/Pi-APRS/temp-config
+CONFIG=$HOME/Pi-APRS/config
 
 touch $TEMPFILE
 
