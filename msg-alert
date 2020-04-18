@@ -5,6 +5,8 @@ source $HOME/Pi-APRS/config
 #message alert for pi-aprs
 #20200417 km4ack
 
+rm $HOME/Pi-ARPS/.msg > /dev/null 2>&1
+
 CALL="$MYCALL-$SSID"
 
 FILE=$HOME/Pi-APRS/log.txt
