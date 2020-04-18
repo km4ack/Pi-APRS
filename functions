@@ -106,12 +106,7 @@ fi
 
 #give user instant feedback on button push
 yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-APRS/ISS.png --no-buttons --center --text="Starting Modems" &
-LOGFILE=$HOME/Pi-APRS/log.txt
-TEMPLOG=$HOME/Pi-APRS/templog.txt
-TODAY=$(date)
-rm $LOGFILE $TEMPLOG
-touch $LOGFILE
-echo "Log file created $TODAY" > $LOGFILE
+touch $HOME/Pi-APRS/log.txt
 #start direwolf
 $DIREWOLF -q d | tee $HOME/Pi-APRS/log.txt &
 sleep 1
