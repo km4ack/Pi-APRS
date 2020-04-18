@@ -69,7 +69,7 @@ QUIT=$?
 
 if [ $QUIT = 1 ] || [ $QUIT = 252 ]; then
 DIRE=$(pidof direwolf)
-KISS=$(pidof kissattach)
+KISS=$(pidof kissutil)
 	if [ -z "$DIRE" ] && [ -z "$KISS" ]
 	then
 	echo "Exiting"
