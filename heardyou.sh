@@ -14,7 +14,7 @@ callsign=${callsign^^}
 printf -v callsign %-9.9s "$callsign"
 
 
-printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:Pi-APRS ${HEARDYOU} ${CITY}, ${STATE} ${GRID}" > $MSGPATH/heard.txt
+printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${HEARDYOU} ${CITY}, ${STATE} ${GRID}" > $MSGPATH/heard.txt
 
 #printf "${MYCALL}-${SSID}>${APRSPATH}::${callsign}:${HEARDYOU} ${CITY}, ${STATE} ${GRID}"
 
