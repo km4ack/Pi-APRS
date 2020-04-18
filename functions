@@ -99,6 +99,10 @@ $MYPATH/heardyou.sh $TO
 
 #Start direwolf & kissattach function
 STARTMODEM () {
+if [ $MYCALL = "N0CALL" ]; then
+yad --width=350 --height=75 --title="N0CALL" --timeout=5 --timeout-indicator=top --no-buttons --center --text="Please choose settings and enter your call sign before using the app"
+exit
+fi
 
 #give user instant feedback on button push
 yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-APRS/ISS.png --no-buttons --center --text="Starting Modems" &
@@ -115,6 +119,7 @@ sleep 1
 #LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
 $KISS &
 sleep 1
+lxterminal -e $HOME/Pi-APRS/msg-alert
 DIRE=$(pidof direwolf)
 KISS=$(pidof kissutil)
 
