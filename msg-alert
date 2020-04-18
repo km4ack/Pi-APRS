@@ -19,6 +19,7 @@ sleep .5
 
 #look for differences in two files
 if [ -z "$CHECK" ]; then
+clear
 echo "Listening for incoming messages"
 echo "CTRL+C to EXIT"
 else
@@ -28,6 +29,7 @@ MSG=$(cat $FILE | tail -3 | grep -i $CALL | head -1 | sed 's/^.*://' | sed 's/{.
 FROM=$(cat $FILE | tail -3 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/^.*}//' | sed 's/>.*$//')
 	#verify message is address to our station	
 	if [ -z "$FROM" ]; then
+	clear
 	echo "####################"
 	echo "found but not for me"
 	echo "####################"
@@ -35,9 +37,10 @@ FROM=$(cat $FILE | tail -3 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's
 	#notify with popup if message is found
 	else
 		if [ ! -f $HOME/Pi-APRS/.msg ]; then
-		yad --center --width=500 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
+		yad --center --width=800 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
 		cp $FILE $FILE1
 		else
+		clear
 		echo "Message was outgoing. Don't Alert"
 		cp $FILE $FILE1
 		rm $HOME/Pi-APRS/.msg
