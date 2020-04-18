@@ -26,6 +26,7 @@ else
 MSG=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | sed 's/^.*://')
 #FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/>.*$//')
 FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's/^.*}//' | sed 's/>.*$//')
+MYPACKET=$(cat $FILE | tail -2 | grep -i pi-aprs)
 	#verify message is address to our station	
 	if [ -z "$FROM" ]; then
 	echo "####################"
@@ -34,8 +35,15 @@ FROM=$(cat $FILE | tail -6 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's
 	cp $FILE $FILE1
 	#notify with popup if message is found
 	else
-	yad --center --width=300 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
-	cp $FILE $FILE1
+		#check if our own packet
+		if [ -z "$MYPACKET" ]; then
+		yad --center --width=300 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
+		cp $FILE $FILE1
+		else
+		echo "####################"
+		echo "last packet was ours"
+		echo "####################"
+		fi
 	fi
 fi
 
