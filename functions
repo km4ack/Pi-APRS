@@ -119,7 +119,7 @@ sleep 1
 #LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
 $KISS &
 sleep 1
-lxterminal -e $HOME/Pi-APRS/msg-alert
+lxterminal --geometry=40x5 -e $HOME/Pi-APRS/msg-alert
 DIRE=$(pidof direwolf)
 KISS=$(pidof kissutil)
 
