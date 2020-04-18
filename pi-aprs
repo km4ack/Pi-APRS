@@ -54,7 +54,7 @@ fi
 	fi
 
 
-yad --form --width=250 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS/ISS.png --image-on-top --text="<b>Pi-APRS</b> by KM4ACK" --text-align=center --center --title="Pi-APRS" \
+yad --form --width=400 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS/ISS.png --image-on-top --text="<b>Pi-APRS</b> by KM4ACK" --text-align=center --center --title="Pi-APRS" \
 --field="Free Message":fbtn "bash -c 'source $MYPATH/functions; FREEMSG'" \
 --field="Status":fbtn "bash -c 'source $MYPATH/functions; SENDSTAT'" \
 --field="Heard You":fbtn "bash -c 'source $MYPATH/functions; HEARDU'" \
@@ -62,6 +62,7 @@ yad --form --width=250 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS
 --field="Send Position":fbtn "bash -c 'source $MYPATH/functions; SENDPOS'" \
 --field="Start Modems":fbtn "bash -c 'source $MYPATH/functions; STARTMODEM'" \
 --field="Settings":fbtn "bash -c 'source $MYPATH/functions; MYCONFIG'" \
+--field="Your Call $MYCALL":LBL \
 --button=gtk-quit:1
 
 QUIT=$?
@@ -70,7 +71,7 @@ if [ $QUIT = 1 ] || [ $QUIT = 252 ]; then
 DIRE=$(pidof direwolf)
 	if [ -z "$DIRE" ]
 	then
-	echo "Shutting Down"
+	echo "Exiting"
 	sudo killall kissutil > /dev/null 2>&1
 	sudo killall direwolf > /dev/null 2>&1
 	else
@@ -81,6 +82,8 @@ DIRE=$(pidof direwolf)
 	echo
 	source $MYPATH/functions; SENDSTAT
 	sleep 2
+	MSGID=$(ps -aux | grep msg-alert | head -1 | awk '{ print $2}')
+	kill $MSGID
 	sudo killall kissutil > /dev/null 2>&1
 	sudo killall direwolf > /dev/null 2>&1
 	echo "Shutdown complete"
