@@ -69,19 +69,16 @@ QUIT=$?
 
 if [ $QUIT = 1 ] || [ $QUIT = 252 ]; then
 DIRE=$(pidof direwolf)
-	if [ -z "$DIRE" ]
+KISS=$(pidof kissattach)
+	if [ -z "$DIRE" ] && [ -z "$KISS" ]
 	then
 	echo "Exiting"
-	sudo killall kissutil > /dev/null 2>&1
-	sudo killall direwolf > /dev/null 2>&1
 	else
 	echo
 	echo "######################"
-	echo "sending ID before exit"
+	echo "     SHUTTING DOWN    "
 	echo "######################"
 	echo
-	source $MYPATH/functions; SENDSTAT
-	sleep 2
 	MSGID=$(ps -aux | grep msg-alert | head -1 | awk '{ print $2}')
 	kill $MSGID
 	sudo killall kissutil > /dev/null 2>&1
