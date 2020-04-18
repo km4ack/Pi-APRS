@@ -7,4 +7,4 @@ source $DIR/config
 
 
 #printf "${MYCALL}-${SSID}>CQ,ARISS:>${MYCALL} ${STATUSCOMMENT}" > $MSGPATH/status.txt
-printf "${MYCALL}-${SSID}>${APRSPATH}:>${MYCALL} ${STATUSCOMMENT}" > $MSGPATH/status.txt
+printf "${MYCALL}-${SSID}>${APRSPATH}:>${MYCALL} Pi-APRS ${STATUSCOMMENT}" > $MSGPATH/status.txt
