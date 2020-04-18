@@ -67,9 +67,24 @@ yad --form --width=250 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS
 QUIT=$?
 
 if [ $QUIT = 1 ] || [ $QUIT = 252 ]; then
-echo "I quit!!"
-sudo killall kissutil > /dev/null 2>&1
-sudo killall direwolf > /dev/null 2>&1
+DIRE=$(pidof direwolf)
+	if [ -z "$DIRE" ]
+	then
+	echo "Shutting Down"
+	sudo killall kissutil > /dev/null 2>&1
+	sudo killall direwolf > /dev/null 2>&1
+	else
+	echo
+	echo "######################"
+	echo "sending ID before exit"
+	echo "######################"
+	echo
+	source $MYPATH/functions; SENDSTAT
+	sleep 2
+	sudo killall kissutil > /dev/null 2>&1
+	sudo killall direwolf > /dev/null 2>&1
+	echo "Shutdown complete"
+	fi
 fi
 
 
