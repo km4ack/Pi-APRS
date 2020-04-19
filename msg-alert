@@ -10,8 +10,8 @@ source $HOME/Pi-APRS/config
 CALL="$MYCALL-$SSID"
 
 MSGFLAG=/run/user/1000/pi-aprs/.msg
-FILE=/run/user/1000/pi-aprs/pi-aprs.log
-FILE1=/run/user/1000/pi-aprs/pi-aprs1.log
+FILE=/run/user/1000/pi-aprs.log
+FILE1=/run/user/1000/pi-aprs1.log
 touch $FILE $FILE1
 counter=1
 
