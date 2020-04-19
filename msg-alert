@@ -44,7 +44,7 @@ FROM=$(cat $FILE | tail -3 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's
 	else
 		if [ ! -f "$MSGFLAG" ]; then
 		yad --center --width=800 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
-		aplay --device plughw:0,0 -t wav $HOME/Pi-APRS/message.wav		
+		aplay --device plughw:0,0 -t wav $NEWMSG		
 		cp $FILE $FILE1
 		else
 		clear
