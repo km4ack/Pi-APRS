@@ -9,14 +9,7 @@ MYPATH=$HOME/Pi-APRS
 
 source $MYPATH/config
 
-
-
-
-##############DEV NOTES##################
-
-#create setup file
-
-##############DEV NOTES##################
+TODAY=$(date +%d%b%y-%H%M)
 
 mkdir -p $MSGPATH
 
@@ -83,6 +76,8 @@ KISS=$(pidof kissutil)
 	kill $MSGID
 	sudo killall kissutil > /dev/null 2>&1
 	sudo killall direwolf > /dev/null 2>&1
+	mkdir -p $HOME/Pi-APRS/logs/
+	cp /run/user/1000/pi-aprs.log $MYPATH/logs/log.$TODAY
 	echo "Shutdown complete"
 	fi
 fi

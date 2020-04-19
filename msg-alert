@@ -5,14 +5,18 @@ source $HOME/Pi-APRS/config
 #message alert for pi-aprs
 #20200417 km4ack
 
-rm $HOME/Pi-ARPS/.msg > /dev/null 2>&1
+
 
 CALL="$MYCALL-$SSID"
 
-FILE=$HOME/Pi-APRS/log.txt
-FILE1=$HOME/Pi-APRS/log1.txt
+MSGFLAG=/run/user/1000/.msg
+FILE=/run/user/1000/pi-aprs.log
+FILE1=/run/user/1000/pi-aprs1.log
 touch $FILE $FILE1
 counter=1
+
+rm $MSGFLAG > /dev/null 2>&1
+
 while true
 do
 
@@ -38,14 +42,15 @@ FROM=$(cat $FILE | tail -3 | grep -i $CALL | head -1 | awk '{print $2}' | sed 's
 	cp $FILE $FILE1
 	#notify with popup if message is found
 	else
-		if [ ! -f $HOME/Pi-APRS/.msg ]; then
+		if [ ! -f "$MSGFLAG" ]; then
 		yad --center --width=800 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --title="New Message" --form --separator="|" --item-separator="," --field="From":RO "$FROM" --field="Message":RO "$MSG" --button=gtk-ok:1 & 
+		aplay --device plughw:0,0 -t wav $NEWMSG		
 		cp $FILE $FILE1
 		else
 		clear
 		echo "Message was outgoing. Don't Alert"
 		cp $FILE $FILE1
-		rm $HOME/Pi-APRS/.msg
+		rm $MSGFLAG
 		fi
 		
 	fi
