@@ -110,7 +110,7 @@ mkdir -p /run/user/1000/pi-aprs/
 DIRELOG=/run/user/1000/pi-aprs.log
 touch $DIRELOG
 #start direwolf quite and log output
-$DIREWOLF -q d | tee $DIRELOG &
+$DIREWOLF -q d -c $DIRECONF | tee $DIRELOG &
 sleep 1
 $KISS &
 sleep 1
@@ -145,6 +145,8 @@ SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --
 --field="LAT/LON" "$LATLON" \
 --field="APRS Symbol" "$SYMBOL" \
 --field="ARPS PATH" "$APRSPATH" \
+--field="New Message Sound":FL "$NEWMSG" \
+--field="Direwolf Config File":FL "$DIRECONF" \
 --field="Direwolf Start Command":RO "$DIREWOLF" \
 --field="Temp Message Path":RO "$MSGPATH" \
 --field="Kissutil Start Command":RO "$KISS"
@@ -165,9 +167,11 @@ STATUSCOMMENT=$(echo $SETTING | awk -F "|" '{print$8}')
 LATLON=$(echo $SETTING | awk -F "|" '{print$9}')
 SYMBOL=$(echo $SETTING | awk -F "|" '{print$10}')
 APRSPATH=$(echo $SETTING | awk -F "|" '{print$11}')
-DIREWOLF=$(echo $SETTING | awk -F "|" '{print$12}')
-MSGPATH=$(echo $SETTING | awk -F "|" '{print$13}')
-KISS=$(echo $SETTING | awk -F "|" '{print$14}')
+NEWMSG=$(echo $SETTING | awk -F "|" '{print$12}')
+DIRECONF=$(echo $SETTING | awk -F "|" '{print$13}')
+DIREWOLF=$(echo $SETTING | awk -F "|" '{print$14}')
+MSGPATH=$(echo $SETTING | awk -F "|" '{print$15}')
+KISS=$(echo $SETTING | awk -F "|" '{print$16}')
 
 echo "#Config file for Pi-APRS" >> $TEMPFILE
 echo "#20200414 KM4ACK" >> $TEMPFILE
@@ -184,6 +188,8 @@ echo "STATUSCOMMENT=\"$STATUSCOMMENT\"" >> $TEMPFILE
 echo "LATLON=$LATLON" >> $TEMPFILE
 echo "SYMBOL=\"$SYMBOL\"" >> $TEMPFILE
 echo "APRSPATH=\"$APRSPATH\"" >> $TEMPFILE
+echo "NEWMSG=\"$NEWMSG\"" >> $TEMPFILE
+echo "DIRECONF=\"$DIRECONF\"" >> $TEMPFILE
 echo "DIREWOLF=\"$DIREWOLF\"" >> $TEMPFILE
 echo "MSGPATH=$MSGPATH" >> $TEMPFILE
 echo "KISS=\"$KISS\"" >> $TEMPFILE
