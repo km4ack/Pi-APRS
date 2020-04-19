@@ -6,6 +6,7 @@ DIR=$HOME/Pi-APRS
 source $DIR/config
 
 MYPATH=$DIR
+TEMPPATH=/run/user/1000
 
 DIRE=$(pidof direwolf)
 KSUT=$(pidof kissutil)
@@ -43,8 +44,8 @@ exit
 fi
 SEQ=$(echo $RANDOM | cut -b 1-3)
 SEQ="{$SEQ}"
-if [ -f $MYPATH/temp.free ]; then
-source $MYPATH/temp.free
+if [ -f $TEMPPATH/temp.free ]; then
+source $TEMPPATH/temp.free
 fi
 MSG=$(yad --center --width=400 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --title="Free Message" \
 --field="TO" "$TO" \
@@ -61,11 +62,11 @@ SEND
 if [ $APRS = "TRUE" ]; then
 #echo "aprs set to true"
 $MYPATH/freemsg.sh $TO "$MSG" $SEQ
-echo "TO=$TO" > $MYPATH/temp.free
+echo "TO=$TO" > $TEMPPATH/temp.free
 else
 #echo "aprs set to false"
 $HOME/Pi-APRS/freemsg.sh $TO "$MSG"
-echo "TO=$TO" > $MYPATH/temp.free
+echo "TO=$TO" > $TEMPPATH/temp.free
 fi
 }
 
@@ -75,8 +76,8 @@ if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
 yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-APRS/ISS.png --button=gtk-ok:1
 exit
 fi
-if [ -f $MYPATH/temp.qsl ]; then
-source $MYPATH/temp.qsl
+if [ -f $TEMPPATH/temp.qsl ]; then
+source $TEMPPATH/temp.qsl
 fi
 MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --title="Send QSL" --form --field="Call sign to QSL" "$TO")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
@@ -86,7 +87,7 @@ fi
 WHAT=QSL
 SEND
 $MYPATH/qsl73.sh $TO
-echo "TO=$TO" > $MYPATH/temp.qsl
+echo "TO=$TO" > $TEMPPATH/temp.qsl
 }
 
 #function to send heard you message
@@ -96,8 +97,8 @@ yad --text="Start modems and try again" --window-icon=$HOME/Pi-APRS/ISS.png --te
 exit
 fi
 
-if [ -f $HOME/Pi-APRS/temp.heard ]; then
-source $HOME/Pi-APRS/temp.heard
+if [ -f $TEMPPATH/temp.heard ]; then
+source $TEMPPATH/temp.heard
 fi
 MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --form --title="Heard You!!" --field="Who did you hear" "$TO")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
@@ -107,7 +108,7 @@ fi
 WHAT="Heard you"
 SEND
 $MYPATH/heardyou.sh $TO
-echo "TO=$TO" > $HOME/Pi-APRS/temp.heard
+echo "TO=$TO" > $TEMPPATH/temp.heard
 }
 
 #Start direwolf & kissattach function
