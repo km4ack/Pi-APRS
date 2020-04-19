@@ -65,6 +65,7 @@ DIRE=$(pidof direwolf)
 KISS=$(pidof kissutil)
 	if [ -z "$DIRE" ] && [ -z "$KISS" ]
 	then
+	rm /run/user/1000/temp.* > /dev/null 2>&1
 	echo "Exiting"
 	else
 	echo
@@ -78,6 +79,7 @@ KISS=$(pidof kissutil)
 	sudo killall direwolf > /dev/null 2>&1
 	mkdir -p $HOME/Pi-APRS/logs/
 	cp /run/user/1000/pi-aprs.log $MYPATH/logs/log.$TODAY
+	rm /run/user/1000/temp.* > /dev/null 2>&1
 	echo "Shutdown complete"
 	fi
 fi
