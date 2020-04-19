@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 source $DIR/config
 
-touch $HOME/Pi-APRS/.msg
+touch /run/user/1000/pi-aprs/.msg
 
 #PKT="$MYCALL-$SSID>CQ,ARISS:=$LATLON$SYMBOL $MYCALL $STATUSCOMMENT"
 PKT="$MYCALL-$SSID>$APRSPATH:=$LATLON$SYMBOL $STATUSCOMMENT"
