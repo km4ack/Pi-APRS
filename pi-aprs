@@ -77,7 +77,7 @@ KISS=$(pidof kissutil)
 	sudo killall kissutil > /dev/null 2>&1
 	sudo killall direwolf > /dev/null 2>&1
 	mkdir -p $HOME/Pi-APRS/logs/
-	cp /run/user/1000/pi-aprs/pi-aprs.log $MYPATH/logs/log.$TODAY
+	cp /run/user/1000/pi-aprs.log $MYPATH/logs/log.$TODAY
 	echo "Shutdown complete"
 	fi
 fi
