@@ -1,7 +1,7 @@
 #Funtions called by main script
 #20200413 km4ack
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR=$HOME/Pi-APRS
 
 source $DIR/config
 
@@ -43,14 +43,16 @@ exit
 fi
 SEQ=$(echo $RANDOM | cut -b 1-3)
 SEQ="{$SEQ}"
-
+if [ -f $MYPATH/temp.free ]; then
+source $MYPATH/temp.free
+fi
 MSG=$(yad --center --width=400 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --title="Free Message" \
---form --field="Terrestrial APRS Message":CHK \
---field="TO" \
---field="Message")
-APRS=$(echo $MSG | awk -F "|" '{print $1}')
-TO=$(echo $MSG | awk -F "|" '{print $2}')
-MSG=$(echo $MSG | awk -F "|" '{print $3}')
+--field="TO" "$TO" \
+--field="Message" \
+--form --field="Terrestrial APRS Message":CHK)
+APRS=$(echo $MSG | awk -F "|" '{print $3}')
+TO=$(echo $MSG | awk -F "|" '{print $1}')
+MSG=$(echo $MSG | awk -F "|" '{print $2}')
 if [ -z "$TO" ]; then
 exit
 fi
@@ -58,10 +60,12 @@ WHAT=message
 SEND
 if [ $APRS = "TRUE" ]; then
 #echo "aprs set to true"
-$HOME/Pi-APRS/freemsg.sh $TO "$MSG" $SEQ
+$MYPATH/freemsg.sh $TO "$MSG" $SEQ
+echo "TO=$TO" > $MYPATH/temp.free
 else
 #echo "aprs set to false"
 $HOME/Pi-APRS/freemsg.sh $TO "$MSG"
+echo "TO=$TO" > $MYPATH/temp.free
 fi
 }
 
@@ -71,7 +75,10 @@ if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
 yad --text="Start modems and try again" --text-align=center --center --window-icon=$HOME/Pi-APRS/ISS.png --button=gtk-ok:1
 exit
 fi
-MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --title="Send QSL" --form --field="Call sign to QSL")
+if [ -f $MYPATH/temp.qsl ]; then
+source $MYPATH/temp.qsl
+fi
+MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --title="Send QSL" --form --field="Call sign to QSL" "$TO")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
 if [ -z "$TO" ]; then
 exit
@@ -79,6 +86,7 @@ fi
 WHAT=QSL
 SEND
 $MYPATH/qsl73.sh $TO
+echo "TO=$TO" > $MYPATH/temp.qsl
 }
 
 #function to send heard you message
@@ -87,7 +95,11 @@ if [ -z "$DIRE" ] || [ -z "$KSUT" ]; then
 yad --text="Start modems and try again" --window-icon=$HOME/Pi-APRS/ISS.png --text-align=center --center --button=gtk-ok:1
 exit
 fi
-MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --form --title="Heard You!!" --field="Who did you hear")
+
+if [ -f $HOME/Pi-APRS/temp.heard ]; then
+source $HOME/Pi-APRS/temp.heard
+fi
+MSG=$(yad --center --width=200 --height=100 --window-icon=$HOME/Pi-APRS/ISS.png --form --title="Heard You!!" --field="Who did you hear" "$TO")
 TO=$(echo $MSG | awk -F "|" '{print $1}')
 if [ -z "$TO" ]; then
 exit
@@ -95,6 +107,7 @@ fi
 WHAT="Heard you"
 SEND
 $MYPATH/heardyou.sh $TO
+echo "TO=$TO" > $HOME/Pi-APRS/temp.heard
 }
 
 #Start direwolf & kissattach function
