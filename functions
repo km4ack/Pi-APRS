@@ -106,12 +106,11 @@ fi
 
 #give user instant feedback on button push
 yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-APRS/ISS.png --no-buttons --center --text="Starting Modems" &
-touch $HOME/Pi-APRS/log.txt
-#start direwolf
-$DIREWOLF -q d | tee $HOME/Pi-APRS/log.txt &
+DIRELOG=/run/user/1000/pi-aprs/pi-aprs.log
+touch $DIRELOG
+#start direwolf quite and log output
+$DIREWOLF -q d | tee $DIRELOG &
 sleep 1
-#get correct link for direwolf
-#LINK=$(ls -l /tmp/kisstnc | awk '{print $NF}')
 $KISS &
 sleep 1
 lxterminal --geometry=40x5 -e $HOME/Pi-APRS/msg-alert
