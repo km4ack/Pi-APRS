@@ -106,6 +106,7 @@ fi
 
 #give user instant feedback on button push
 yad --width=300 --height=75 --title="Modems" --timeout=1 --timeout-indicator=top --window-icon=$HOME/Pi-APRS/ISS.png --no-buttons --center --text="Starting Modems" &
+mkdir -p /run/user/1000/pi-aprs/
 DIRELOG=/run/user/1000/pi-aprs/pi-aprs.log
 touch $DIRELOG
 #start direwolf quite and log output
