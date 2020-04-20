@@ -163,7 +163,8 @@ SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --
 --field="Direwolf Config File":FL "$DIRECONF" \
 --field="Direwolf Start Command":RO "$DIREWOLF" \
 --field="Temp Message Path":RO "$MSGPATH" \
---field="Kissutil Start Command":RO "$KISS"
+--field="Kissutil Start Command":RO "$KISS" \
+--field="GPS Update LAT/LON":fbtn "bash -c '$MYPATH/gps'" \
 )
 
 if [ -z "$SETTING" ]; then
@@ -178,7 +179,12 @@ GRID=$(echo $SETTING | awk -F "|" '{print$5}')
 HEARDYOU=$(echo $SETTING | awk -F "|" '{print$6}')
 QSLMESSASGE=$(echo $SETTING | awk -F "|" '{print$7}')
 STATUSCOMMENT=$(echo $SETTING | awk -F "|" '{print$8}')
+if [ -f /run/user/1000/gps.data ]; then
+LATLON=$(cat /run/user/1000/gps.data)
+rm /run/user/1000/gps.data
+else
 LATLON=$(echo $SETTING | awk -F "|" '{print$9}')
+fi
 SYMBOL=$(echo $SETTING | awk -F "|" '{print$10}')
 APRSPATH=$(echo $SETTING | awk -F "|" '{print$11}')
 NEWMSG=$(echo $SETTING | awk -F "|" '{print$12}')
