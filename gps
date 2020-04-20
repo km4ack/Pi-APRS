@@ -73,7 +73,7 @@ LONG="0$D$M.$S$LONGD"
 #Send result to ~/Pi-APRS/config
 
 sed -i "s/LATLON=.*$/LATLON=$LAT\/$LONG/" $HOME/Pi-APRS/config
-yad --width=350 --height=75 --title="Updating" --timeout=3 --timeout-indicator=top --no-buttons --center --text="Updating LAT/LON" &
+yad --width=350 --height=75 --title="Updating" --timeout=3 --timeout-indicator=top --no-buttons --center --text="Updating LAT/LON. Press OK to save" &
 echo "$LAT/$LONG" > $GPSDATA
 
 
