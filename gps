@@ -23,8 +23,8 @@ rm $gpstmp $gpstmp"1"
 LAT=$(cat /tmp/gps.lat)
 LONG=$(cat /tmp/gps.lon)
 
-#echo $LAT
-#echo $LONG
+echo $LAT
+echo $LONG
 
 
 rm /tmp/gps.lat /tmp/gps.lon
@@ -50,6 +50,8 @@ S1=$(echo "$M/60" | bc -l | cut -b 1-2)
 S=$(echo "($LAT-$D-$S1)*3600" | bc -l | cut -b 1-2)
 
 LAT="$D$M.$S$LATD"
+
+#echo $LAT
 
 #Convert LON to DMS
 CHECKLONG=$(echo $LONG | grep "-")
