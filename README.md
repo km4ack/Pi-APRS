@@ -12,7 +12,7 @@ direwolf, ax25-tools, & YAD
 ```
 cd ~
 git clone https://github.com/km4ack/Pi-APRS.git
-ln -sf ~/Pi-ISS/pi-iss ~/Desktop/Pi-APRS
+ln -sf ~/Pi-APRS/pi-aprs ~/Desktop/Pi-APRS
 ```
 
 # Before running the app
