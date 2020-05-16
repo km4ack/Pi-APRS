@@ -20,7 +20,7 @@ Before you run the app the first time, be sure that direwolf is configured for y
 
 # Configure
 After installing you will need to set your call sign and other details using the settings button before using the app.
-A few fields are not editable in the settings. If you need to edit these fields, open the config file in the ~/Pi-ISS/
+A few fields are not editable in the settings. If you need to edit these fields, open the config file in the ~/Pi-APRS/
 directory and make changes there.
 
 # Using the app
