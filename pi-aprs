@@ -30,21 +30,17 @@ fi
 	#check if YAD is installed
 	if ! hash yad 2>/dev/null; then
 	echo "YAD isn't installed. Please install and try again"
+	sleep 5
 	exit
 	fi
 
 	#check if direwolf is installed
 	if ! hash direwolf 2>/dev/null; then
 	echo "Direwolf isn't installed. Please install and try again"
+	sleep 5
 	exit	
 	fi
 
-	#check if ax25 is installed
-	AX=$(ls /etc/ax25)
-	if [ -z "$AX" ]; then
-	echo "AX25 isn't installed. Please install and try again"
-	exit
-	fi
 
 
 yad --form --width=400 --image $HOME/Pi-APRS/ISS.png --window-icon=$HOME/Pi-APRS/ISS.png --image-on-top --text="<b>Pi-APRS</b> by KM4ACK" --text-align=center --center --title="Pi-APRS" \
