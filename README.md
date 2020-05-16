@@ -6,7 +6,7 @@ His prior work was invaluable to this project.
 
 # Dependencies
 This script requires
-direwolf, ax25-tools, & YAD
+direwolf & YAD
 
 # Install
 ```
