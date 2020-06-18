@@ -144,7 +144,7 @@ SETTING=$(yad --center --width=500 --wrap --window-icon=$HOME/Pi-APRS/ISS.png --
 --field="Status Comment" "$STATUSCOMMENT" \
 --field="LAT/LON" "$LATLON" \
 --field="APRS Symbol" "$SYMBOL" \
---field="ARPS PATH" "$APRSPATH" \
+--field="APRS PATH" "$APRSPATH" \
 --field="New Message Sound":FL "$NEWMSG" \
 --field="Direwolf Config File":FL "$DIRECONF" \
 --field="Direwolf Start Command":RO "$DIREWOLF" \
