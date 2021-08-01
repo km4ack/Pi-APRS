@@ -35,4 +35,4 @@ on your desktop, from the terminal run
 
 Enjoy!
 73, de KM4ACK
-last edit 01AUG2021
+
