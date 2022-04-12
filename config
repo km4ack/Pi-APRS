@@ -16,5 +16,5 @@ APRSPATH="CQ,ARISS"
 NEWMSG="/home/pi/Pi-APRS/message.wav"
 DIRECONF="/home/pi/direwolf.conf"
 DIREWOLF="/usr/local/bin/direwolf -p -t 0"
-MSGPATH=/run/user/1000/pi-aprs
+MSGPATH=/run/user/$UID/pi-aprs
 KISS="/usr/local/bin/kissutil -f /run/user/1000/pi-aprs/ -h 127.0.0.1"
